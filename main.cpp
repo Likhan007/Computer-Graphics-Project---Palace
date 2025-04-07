@@ -74,17 +74,13 @@ void Draw()
     glClear(GL_COLOR_BUFFER_BIT);
     ///circle(50,50,50,50,100);
 
-    //Gate
-    glColor3f( 0 ,0, 0);
-    circle(10,20,260,130,100);
 
 
 
 
 
 
-
-    /// Gate
+    /// Bridge
     glColor3f(0.72, 0.72, 0.72);
     glBegin(GL_POLYGON);
     glVertex2i(220, 130);
@@ -92,7 +88,7 @@ void Draw()
     glVertex2i(300, 170);
     glVertex2i(220, 170);
     glEnd();
-    // Gate Top Black
+    // Bridge Top Black
     glColor3f(0.27, 0.27, 0.27);
     glBegin(GL_POLYGON);
     glVertex2i(220, 170);
@@ -100,6 +96,15 @@ void Draw()
     glVertex2i(300, 175);
     glVertex2i(220, 175);
     glEnd();
+
+    // Left Bridge Bottom Blank Space
+
+    glColor3f( 1 ,1, 1);
+    circle(30,20,260,130,200);
+    circle(20,25,260,130,200);
+    circle(5,30,260,130,200);
+
+
 
     ///Left Big Tower 2(With flag on top)
 
@@ -111,6 +116,7 @@ void Draw()
     glVertex2i(195, 420);
     glEnd();
 
+    //main body
     glColor3f(0.55, 0.55, 0.55);
     glBegin(GL_POLYGON);
     glVertex2i(170, 325); // LT dibs
@@ -137,10 +143,42 @@ void Draw()
     glColor3f(0.55, 0.55, 0.55);
     gapboxesX(165, 340, 5, 7, 225, 7); // Two boxes spaced from x=120 to x=220
 
+    /// Bridge Left and Right Tents
+            //left tent body
+    glColor3f(0.42, 0.42, 0.42);
+    glBegin(GL_POLYGON);
+    glVertex2i(213, 130);
+    glVertex2i(227, 130);
+    glVertex2i(227, 145);
+    glVertex2i(213, 145);
+    glEnd();
+            // left tent roof
+    glColor3f(0.3, 0.3, 0.3);
+    glBegin(GL_POLYGON);
+    glVertex2i(213, 145);
+    glVertex2i(227, 145);
+    glVertex2i(220, 155);
+    glEnd();
+            //right tent body
+    glColor3f(0.42, 0.42, 0.42);
+    glBegin(GL_POLYGON);
+    glVertex2i(213+80, 130);
+    glVertex2i(227+80, 130);
+    glVertex2i(227+80, 145);
+    glVertex2i(213+80, 145);
+    glEnd();
+            // right tent roof
+    glColor3f(0.3, 0.3, 0.3);
+    glBegin(GL_POLYGON);
+    glVertex2i(213+80, 145);
+    glVertex2i(227+80, 145);
+    glVertex2i(220+80, 155);
+    glEnd();
 
 
-
-    /// Wall
+    //////////////////////////////////////////////////////
+    //////////////////////// Wall/////////////////////////
+    //////////////////////////////////////////////////////
     glColor3f( 0.48 ,0.5, 0.5);
     glBegin(GL_POLYGON);
     glVertex2i(70,40);
