@@ -26,12 +26,121 @@ void circle(GLfloat rx, GLfloat ry, GLfloat cx, GLfloat cy , GLfloat rad)
     }
     glEnd();
 }
+
+void rec(float x, float y, float width, float height) {
+    glBegin(GL_POLYGON);
+        glVertex2i(x, y);                  // Bottom Left
+        glVertex2i(x + width, y);          // Bottom Right
+        glVertex2i(x + width, y + height); // Top Right
+        glVertex2i(x, y + height);         // Top Left
+    glEnd();
+}
+
+
+void gapboxesX(float x, float y, float width, float height, float endX, int numOfBoxes) {
+    if (numOfBoxes <= 1) return;
+
+    float totalWidth = width * numOfBoxes;
+    float availableSpace = endX - x;
+    float totalGap = availableSpace - totalWidth;
+    float gap = totalGap / (numOfBoxes - 1);
+
+    for (int i = 0; i < numOfBoxes; i++) {
+        float xpos = x + i * (width + gap);
+        rec(xpos, y, width, height);
+    }
+}
+
+
+void gapboxesY(float x, float y, float width, float height, float endY, int numOfBoxes) {
+    if (numOfBoxes <= 1) return;
+
+    float totalHeight = height * numOfBoxes;
+    float availableSpace = endY - y;
+    float totalGap = availableSpace - totalHeight;
+    float gap = totalGap / (numOfBoxes - 1);
+
+    for (int i = 0; i < numOfBoxes; i++) {
+        float ypos = y + i * (height + gap);
+        rec(x, ypos, width, height);
+    }
+}
+
+
+
+
 void Draw()
 {
     glClear(GL_COLOR_BUFFER_BIT);
     ///circle(50,50,50,50,100);
 
-    // Wall
+    //Gate
+    glColor3f( 0 ,0, 0);
+    circle(10,20,260,130,100);
+
+
+
+
+
+
+
+    /// Gate
+    glColor3f(0.72, 0.72, 0.72);
+    glBegin(GL_POLYGON);
+    glVertex2i(220, 130);
+    glVertex2i(300, 130);
+    glVertex2i(300, 170);
+    glVertex2i(220, 170);
+    glEnd();
+    // Gate Top Black
+    glColor3f(0.27, 0.27, 0.27);
+    glBegin(GL_POLYGON);
+    glVertex2i(220, 170);
+    glVertex2i(300, 170);
+    glVertex2i(300, 175);
+    glVertex2i(220, 175);
+    glEnd();
+
+    ///Left Big Tower 2(With flag on top)
+
+    //Orange Hat on top
+    glColor3f(0.96, 0.6, 0.3);
+    glBegin(GL_POLYGON);
+    glVertex2i(165, 335);
+    glVertex2i(225, 335);
+    glVertex2i(195, 420);
+    glEnd();
+
+    glColor3f(0.55, 0.55, 0.55);
+    glBegin(GL_POLYGON);
+    glVertex2i(170, 325); // LT dibs
+    glVertex2i(170, 130); // LB
+    glVertex2i(220, 130);
+    glVertex2i(220, 325); // RT dibs
+    glVertex2i(225, 335);
+    glVertex2i(225, 340); // RT
+    glVertex2i(165, 340); // LT
+    glVertex2i(165, 335);
+    glEnd();
+    //black part on top
+    glColor3f(0.3, 0.3, 0.3);
+    glBegin(GL_POLYGON);
+    glVertex2i(170, 325); // LT dibs
+    glVertex2i(170, 320); // LB
+    glVertex2i(220, 320);
+    glVertex2i(220, 325); // RT dibs
+    glVertex2i(225, 335);
+    glVertex2i(165, 335);
+    glEnd();
+
+    //Top Gapped Boxes
+    glColor3f(0.55, 0.55, 0.55);
+    gapboxesX(165, 340, 5, 7, 225, 7); // Two boxes spaced from x=120 to x=220
+
+
+
+
+    /// Wall
     glColor3f( 0.48 ,0.5, 0.5);
     glBegin(GL_POLYGON);
     glVertex2i(70,40);
@@ -47,24 +156,22 @@ void Draw()
     glVertex2i(850,125);
     glVertex2i(850,130);
     glVertex2i(70,130);
-
     glEnd();
-
     /// Left tent
     // Base tower body
     glColor3f(0.65, 0.68, 0.68); // light gray
     glBegin(GL_POLYGON);
     glVertex2i(45, 40);  // bottom left
     glVertex2i(100, 40);  // bottom right
-    glVertex2i(90, 132);  // top right
-    glVertex2i(55, 132);  // top left
+    glVertex2i(90, 135);  // top right
+    glVertex2i(55, 135);  // top left
     glEnd();
 
     // Roof
     glColor3f(0.2, 0.2, 0.2); // dark gray
     glBegin(GL_TRIANGLES);
-    glVertex2i(50, 130);  // left
-    glVertex2i(95, 130);  // right
+    glVertex2i(50, 135);  // left
+    glVertex2i(95, 135);  // right
     glVertex2i(72.5, 170);  // top
     glEnd();
 
@@ -74,15 +181,15 @@ void Draw()
     glBegin(GL_POLYGON);
     glVertex2i(45+775, 40);  // bottom left
     glVertex2i(100+775, 40);  // bottom right
-    glVertex2i(90+775, 132);  // top right
-    glVertex2i(55+775, 132);  // top left
+    glVertex2i(90+775, 135);  // top right
+    glVertex2i(55+775, 135);  // top left
     glEnd();
 
     // Roof
     glColor3f(0.2, 0.2, 0.2); // dark gray
     glBegin(GL_TRIANGLES);
-    glVertex2i(50+775, 130);  // left
-    glVertex2i(95+775, 130);  // right
+    glVertex2i(50+775, 135);  // left
+    glVertex2i(95+775, 135);  // right
     glVertex2i(72.5+775, 170);  // top
     glEnd();
 
@@ -105,6 +212,7 @@ void Draw()
     glVertex2i(156, 70);  // top right
     glVertex2i(134, 70);  // top left
     glEnd();
+
     // gateSecondary
     glColor3f(0.24, 0.25, 0.25); // light gray
     glBegin(GL_POLYGON);
@@ -147,28 +255,30 @@ void Draw()
     glVertex2i(158, 248);  // top right
     glVertex2i(132, 248);  // top right
     glEnd();
+    // MidTopPillar
+    glColor3f(0.41, 0.4, 0.4);
+    glBegin(GL_POLYGON);
+    glVertex2i(132, 190);
+    glVertex2i(158, 190);
+    glVertex2i(158, 215);
+    glVertex2i(132, 215);
+    glEnd();
             //small right
+            glColor3f(0.71, 0.72, 0.72);
             glBegin(GL_POLYGON);
-            glVertex2i(158, 238);  // top left
-            glVertex2i(162, 238);  // top right
-            glVertex2i(162, 248);  // top right
-            glVertex2i(158, 248);  // top right
+            glVertex2i(158, 238);  // BL
+            glVertex2i(162, 238);  // BR
+            glVertex2i(162, 248);  // TR
+            glVertex2i(158, 248);  // TL
             glEnd();
             //small left
             glBegin(GL_POLYGON);
-            glVertex2i(132, 238);  // top left
-            glVertex2i(128, 238);  // top left
-            glVertex2i(128, 248);  // top left
-            glVertex2i(132, 248);  // top left
+            glVertex2i(132, 238);  // BR
+            glVertex2i(128, 238);  // BL
+            glVertex2i(128, 248);  // TL
+            glVertex2i(132, 248);  // TR
             glEnd();
-    //Orange Hat o top
-    glColor3f(0.96, 0.6, 0.3);
-    glBegin(GL_POLYGON);
-    glVertex2i(125, 248);  // top left
-    glVertex2i(170, 248);  // top left
-    glVertex2i(165, 255);  // top left
-    glVertex2i(145, 290);  // top left
-    glEnd();
+
 
     glutSwapBuffers();
 }
