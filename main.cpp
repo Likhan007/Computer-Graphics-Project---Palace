@@ -105,6 +105,152 @@ void Draw()
     circle(5,30,260,130,200);
 
 
+    ///A shaped Roof building
+    //base
+    glColor3f(0.91, 0.85, 0.76);
+    glBegin(GL_POLYGON);
+    glVertex2i(295, 190);
+    glVertex2i(380, 190);
+    glVertex2i(380, 320);
+    glVertex2i(295, 320);
+    glEnd();
+
+    // black lines
+    glColor3f(0.36, 0.36, 0.36);
+    glBegin(GL_POLYGON);
+    glVertex2i(295, 232);
+    glVertex2i(380, 232);
+    glVertex2i(380, 235);
+    glVertex2i(295, 235);
+    glEnd();
+
+    glColor3f(0.36, 0.36, 0.36);
+    glBegin(GL_POLYGON);
+    glVertex2i(295, 270);
+    glVertex2i(380, 270);
+    glVertex2i(380, 273);
+    glVertex2i(295, 273);
+    glEnd();
+
+    glColor3f(0.36, 0.36, 0.36);
+    glBegin(GL_POLYGON);
+    glVertex2i(292, 307);
+    glVertex2i(383, 307);
+    glVertex2i(383, 311);
+    glVertex2i(292, 311);
+    glEnd();
+
+    // Left and Right Slim pillars
+    glColor3f(0.62, 0.62, 0.62);
+    glBegin(GL_POLYGON);
+    glVertex2i(302, 350);
+    glVertex2i(310, 350);
+    glVertex2i(310, 450);
+    glVertex2i(302, 450);
+    glEnd();
+        //capleft
+        glColor3f(0.9, 0.44, 0.06);
+        glBegin(GL_POLYGON);
+        glVertex2i(303, 455);
+        glVertex2i(300, 450);
+        glVertex2i(312, 450);
+        glVertex2i(309, 455);
+        glVertex2i(306, 465);
+        glEnd();
+    glColor3f(0.62, 0.62, 0.62);
+    glBegin(GL_POLYGON);
+    glVertex2i(302+60, 350);
+    glVertex2i(310+60, 350);
+    glVertex2i(310+60, 450);
+    glVertex2i(302+60, 450);
+    glEnd();
+        //capright
+        glColor3f(0.9, 0.44, 0.06);
+        glBegin(GL_POLYGON);
+        glVertex2i(303+60, 455);
+        glVertex2i(300+60, 450);
+        glVertex2i(312+60, 450);
+        glVertex2i(309+60, 455);
+        glVertex2i(306+60, 465);
+        glEnd();
+
+    // Orange Head
+    glColor3f(0.9, 0.44, 0.06);
+    glBegin(GL_POLYGON);
+    glVertex2i(292, 327);
+    glVertex2i(280, 320);
+    glVertex2i(392, 320);
+    glVertex2i(380, 327);
+    glVertex2i(365, 410);
+    glVertex2i(310, 410);
+    glEnd();
+    // Darker Orange shade on roof bottom
+    glColor3f(0.8, 0.39, 0.05);
+    glBegin(GL_POLYGON);
+    glVertex2i(292, 327);
+    glVertex2i(280, 320);
+    glVertex2i(392, 320);
+    glVertex2i(380, 327);
+    glEnd();
+
+    ///Simple Small Building
+    //base(left)
+    glColor3f(0.91, 0.85, 0.76); // White wall
+    glBegin(GL_POLYGON);
+    glVertex2i(390, 190);
+    glVertex2i(430, 190);
+    glVertex2i(430, 275);
+    glVertex2i(390, 275);
+    glEnd();
+    // base(right-back)
+    glColor3f(0.32, 0.32, 0.32); // Black
+    glBegin(GL_POLYGON);
+    glVertex2i(430, 190);
+    glVertex2i(480, 190);
+    glVertex2i(480, 275);
+    glVertex2i(455, 335);
+    glVertex2i(430, 275);
+    glEnd();
+    // base(right-frnt)
+    glColor3f(0.91, 0.85, 0.76); // baige
+    glBegin(GL_POLYGON);
+    glVertex2i(433, 190);
+    glVertex2i(477, 190);
+    glVertex2i(477, 272);
+    glVertex2i(455, 325);
+    glVertex2i(433, 275);
+    glEnd();
+
+    //Orange roof
+    glColor3f(0.9, 0.44, 0.06); // White wall
+    glBegin(GL_POLYGON);
+    glVertex2i(390, 275);
+    glVertex2i(430, 275);
+    glVertex2i(455, 335);
+    glVertex2i(415, 335);
+    glEnd();
+
+    //Black Border
+
+
+
+    ///Building's Base (Draw Buildings Before this section)
+    glColor3f(0.51, 0.51, 0.51);
+    glBegin(GL_POLYGON);
+    glVertex2i(300, 125);
+    glVertex2i(700, 125);
+    glVertex2i(700, 185);
+    glVertex2i(300, 185);
+    glEnd();
+    //Building Base Black Top
+    glColor3f(0.63, 0.63, 0.63);
+    glBegin(GL_POLYGON);
+    glVertex2i(300, 185);
+    glVertex2i(700, 185);
+    glVertex2i(700, 190);
+    glVertex2i(300, 190);
+    glEnd();
+
 
     ///Left Big Tower 2(With flag on top)
 
@@ -195,6 +341,8 @@ void Draw()
     glVertex2i(850,130);
     glVertex2i(70,130);
     glEnd();
+
+
     /// Left tent
     // Base tower body
     glColor3f(0.65, 0.68, 0.68); // light gray
@@ -301,21 +449,32 @@ void Draw()
     glVertex2i(158, 215);
     glVertex2i(132, 215);
     glEnd();
-            //small right
+                //small left
             glColor3f(0.71, 0.72, 0.72);
-            glBegin(GL_POLYGON);
-            glVertex2i(158, 238);  // BL
-            glVertex2i(162, 238);  // BR
-            glVertex2i(162, 248);  // TR
-            glVertex2i(158, 248);  // TL
-            glEnd();
-            //small left
             glBegin(GL_POLYGON);
             glVertex2i(132, 238);  // BR
             glVertex2i(128, 238);  // BL
             glVertex2i(128, 248);  // TL
             glVertex2i(132, 248);  // TR
             glEnd();
+            //small right
+            glBegin(GL_POLYGON);
+            glVertex2i(158, 238);  // BL
+            glVertex2i(162, 238);  // BR
+            glVertex2i(162, 248);  // TR
+            glVertex2i(158, 248);  // TL
+            glEnd();
+
+    // MidTopPillarOrangeCap
+    glColor3f(0.96, 0.6, 0.3);
+    glBegin(GL_POLYGON);
+    glVertex2i(130, 253);
+    glVertex2i(125, 248);
+    glVertex2i(165, 248);
+    glVertex2i(160, 253);
+    glVertex2i(145, 290);
+    glEnd();
+
 
 
     glutSwapBuffers();
