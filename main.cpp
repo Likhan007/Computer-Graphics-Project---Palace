@@ -251,6 +251,49 @@ void Draw()
     glVertex2i(300, 190);
     glEnd();
 
+    ///Center Watchtower
+    //base
+    glColor3f(0.67, 0.67, 0.67);
+    glBegin(GL_POLYGON);
+    glVertex2i(465, 125);
+    glVertex2i(540, 125);
+    glVertex2i(530, 230);
+    glVertex2i(475, 230);
+    glEnd();
+
+
+    //crown
+
+    glColor3f(0.67, 0.67, 0.67);
+    glBegin(GL_POLYGON);
+    glVertex2i(465, 230);
+    glVertex2i(540, 230);
+    glVertex2i(540, 245);
+    glVertex2i(465, 245);
+    glEnd();
+
+    glColor3f(0.27, 0.27, 0.27);
+    glBegin(GL_POLYGON);
+    glVertex2i(465, 230);
+    glVertex2i(540, 230);
+    glVertex2i(540, 235);
+    glVertex2i(465, 235);
+    glEnd();
+//gapped boxes
+    glColor3f(0.67, 0.67, 0.67);
+    gapboxesX(465, 245, 10, 10, 540, 5);
+
+
+    ///Slim Tower at center
+    //slim base
+    glColor3f(0.67, 0.67, 0.67);
+    glBegin(GL_POLYGON);
+    glVertex2i(565, 125);
+    glVertex2i(610, 125);
+    glVertex2i(610, 310);
+    glVertex2i(565, 310);
+    glEnd();
+
 
     ///Left Big Tower 2(With flag on top)
 
