@@ -193,6 +193,87 @@ void Draw()
     glVertex2i(380, 327);
     glEnd();
 
+    ///Slim gray pillar at back
+
+    glColor3f(0.6, 0.6, 0.6);
+    glBegin(GL_POLYGON);
+    glVertex2i(400, 300);
+    glVertex2i(435, 300);
+    glVertex2i(435, 460);
+    glVertex2i(400, 460);
+    glEnd();
+    glColor3f(0.6, 0.6, 0.6);
+    glBegin(GL_POLYGON);
+    glVertex2i(395, 460);
+    glVertex2i(440, 460);
+    glVertex2i(440, 480);
+    glVertex2i(395, 480);
+    glEnd();
+    //orange top
+    glColor3f(0.9, 0.44, 0.06);
+    glBegin(GL_POLYGON);
+    glVertex2i(400, 485);
+    glVertex2i(395, 480);
+    glVertex2i(440, 480);
+    glVertex2i(435, 485);
+    glVertex2i(417.5, 590);
+    glEnd();
+
+    ///Huge Building at back
+
+    glColor3f(0.91, 0.86, 0.69);
+    glBegin(GL_POLYGON);
+    glVertex2i(510, 190);
+    glVertex2i(690, 190);
+    glVertex2i(690, 290);
+    glVertex2i(640, 410);
+    glVertex2i(550, 410);
+    glVertex2i(510, 290);
+    glEnd();
+
+    //roof
+    glColor3f(0.9, 0.44, 0.06);
+    glBegin(GL_POLYGON);
+    glVertex2i(550, 410);
+    glVertex2i(640, 410);
+    glVertex2i(690, 290);
+    glVertex2i(600, 290);
+    glEnd();
+
+    ///Right Tall Spike Tower
+    glColor3f(0.59, 0.59, 0.59);
+    glBegin(GL_POLYGON);
+    glVertex2i(710, 120);
+    glVertex2i(800, 120);
+    glVertex2i(770, 450);
+    glVertex2i(740, 450);
+    glEnd();
+
+    //Orange Top
+    glColor3f(0.9, 0.44, 0.06);
+    glBegin(GL_POLYGON);
+    glVertex2i(742, 460); //left edge
+    glVertex2i(735, 450);
+    glVertex2i(775, 450);
+    glVertex2i(768, 460); //Right edge
+    glVertex2i(755, 510);
+    glEnd();
+
+        //TopBlack part
+    glColor3f(0.29, 0.29, 0.29);
+    glBegin(GL_POLYGON);
+    glVertex2i(740, 445);
+    glVertex2i(735, 450); //lbhat
+    glVertex2i(775, 450); //rbhat
+    glVertex2i(770, 445);
+    glVertex2i(775, 420);
+    glVertex2i(735, 420);
+    glEnd();
+
+
+
+
+
     ///Simple Small Building
     //base(left)
     glColor3f(0.91, 0.85, 0.76); // White wall
@@ -231,6 +312,7 @@ void Draw()
     glEnd();
 
     //Black Border
+
 
 
 
@@ -294,6 +376,20 @@ void Draw()
     glVertex2i(565, 310);
     glEnd();
 
+    glColor3f(0.67, 0.67, 0.67);
+    glBegin(GL_POLYGON);
+    glVertex2i(555, 310);
+    glVertex2i(620, 310);
+    glVertex2i(620, 350);
+    glVertex2i(555, 350);
+    glEnd();
+
+    glColor3f(0.96, 0.6, 0.3);
+    glBegin(GL_POLYGON);
+    glVertex2i(625, 350);
+    glVertex2i(550, 350);
+    glVertex2i(587.5, 470);
+    glEnd();
 
     ///Left Big Tower 2(With flag on top)
 
@@ -453,7 +549,7 @@ void Draw()
     glEnd();
     // OrangeRoof
     glColor3f(0.96, 0.6, 0.3);
-    glBegin(GL_POLYGON);
+ glColor3f(0.96, 0.6, 0.3);   glBegin(GL_POLYGON);
     glVertex2i(120, 172);  // top left
     glVertex2i(170, 172);  // top right
     glVertex2i(170, 176);  // top right
