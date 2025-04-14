@@ -15,6 +15,7 @@ void init(void)
 
 
 
+
 void circle(GLfloat rx, GLfloat ry, GLfloat cx, GLfloat cy , GLfloat rad)
 {
     glBegin(GL_TRIANGLE_FAN);
@@ -28,6 +29,23 @@ void circle(GLfloat rx, GLfloat ry, GLfloat cx, GLfloat cy , GLfloat rad)
         glVertex2f(x+cx,y+cy);
     }
     glEnd();
+}
+
+void drawCloud(GLfloat centerX, GLfloat centerY, GLfloat size) {
+    // Set white color for the cloud
+    glColor3f(1.0, 1.0, 1.0); // White
+
+    // Scale factor for the cloud size
+    GLfloat scale = size / 100.0; // Normalize based on a reference size of 100
+
+    // Draw multiple circles to form a fluffy cloud shape
+    circle(50.0 * scale, 40.0 * scale, centerX, centerY, 100);                  // Main central body
+    circle(40.0 * scale, 35.0 * scale, centerX - 60 * scale, centerY, 100);     // Left side
+    circle(45.0 * scale, 38.0 * scale, centerX + 60 * scale, centerY, 100);     // Right side
+    circle(35.0 * scale, 30.0 * scale, centerX - 30 * scale, centerY + 30 * scale, 100); // Upper left
+    circle(38.0 * scale, 32.0 * scale, centerX + 30 * scale, centerY + 35 * scale, 100); // Upper right
+    circle(30.0 * scale, 25.0 * scale, centerX - 50 * scale, centerY - 30 * scale, 100); // Lower left
+    circle(32.0 * scale, 28.0 * scale, centerX + 50 * scale, centerY - 25 * scale, 100); // Lower right
 }
 
 // Function to draw a bush using multiple circles
@@ -153,6 +171,11 @@ void gapboxesY(float x, float y, float width, float height, float endY, int numO
 
 
 
+// Array to store individual offsets for each cloud
+float cloudOffsets[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+
+// Original x-positions of the clouds (to calculate resets individually)
+float cloudBaseX[6] = {200.0, 400.0, 700.0, 780.0, 1100.0, 1200.0};
 
 void Draw()
 {
@@ -160,10 +183,29 @@ void Draw()
     ///circle(50,50,50,50,100);
 
 
+// Update each cloud's offset individually
+    for (int i = 0; i < 6; i++) {
+        cloudOffsets[i] += 0.1; // Slower movement (was 0.5, now 0.1)
 
+        // Calculate the current x-position of the cloud
+        float currentX = cloudBaseX[i] + cloudOffsets[i];
 
+        // If the cloud moves off the right edge (x > 1280), reset its offset
+        if (currentX > 1280 + 100) { // Add 100 to account for cloud size
+            // Reset the offset so the cloud starts from the left edge
+            cloudOffsets[i] = -(cloudBaseX[i] + 100); // Move it off the left edge
+        }
+    }
 
+    // Draw clouds with updated x-positions
+    drawCloud(200.0 + cloudOffsets[0], 450.0, 100.0);
+    drawCloud(400.0 + cloudOffsets[1], 650.0, 100.0);
+    drawCloud(700.0 + cloudOffsets[2], 500.0, 100.0);
+    drawCloud(780.0 + cloudOffsets[3], 540.0, 100.0);
+    drawCloud(1100.0 + cloudOffsets[4], 400.0, 100.0);
+    drawCloud(1200.0 + cloudOffsets[5], 580.0, 100.0);
 
+    glutPostRedisplay();
 
     /// Bridge
     glColor3f(0.72, 0.72, 0.72);
@@ -186,7 +228,7 @@ void Draw()
 
     // Left Bridge Bottom Blank Space
 
-    glColor3f( 1 ,1, 1);
+    glColor3f( 0.81, 0.96, 1);
     circle(30,20,260,130,200);
     circle(20,25,260,130,200);
     circle(5,30,260,130,200);
@@ -352,6 +394,11 @@ void Draw()
     glVertex2i(470, 490);
     glEnd();
 
+        //window
+        glColor3f(0.37, 0.37, 0.37);
+        rec(575,520,10,20);
+        circle(5,5,580,540,200);
+
     glColor3f(0.66, 0.64, 0.52);
     glBegin(GL_POLYGON);
     glVertex2i(470, 190);
@@ -415,6 +462,9 @@ void Draw()
     glVertex2i(510, 290);
     glEnd();
 
+        glColor3f(0.37, 0.37, 0.37);
+        rec(545,280,10,20);
+
     //roof
     glColor3f(0.9, 0.44, 0.06);
     glBegin(GL_POLYGON);
@@ -423,6 +473,33 @@ void Draw()
     glVertex2i(690, 290);
     glVertex2i(600, 290);
     glEnd();
+
+        //drawing outer lines
+        glColor3f(0.33, 0.33, 0.33);
+        glBegin(GL_LINES);
+        glVertex2i(550, 410);
+        glVertex2i(600, 290);
+        glEnd();
+
+        glBegin(GL_LINES);
+        glVertex2i(550, 410);
+        glVertex2i(510, 290);
+        glEnd();
+
+        glBegin(GL_LINES);
+        glVertex2i(510, 290);
+        glVertex2i(510, 170);
+        glEnd();
+
+    glColor3f(0.54, 0.4, 0);
+    gapboxesX(605,250,8,10,680,4);
+    gapboxesX(605,220,8,10,680,4);
+
+    glColor3f( 1 ,0, 0);
+	glBegin(GL_LINES);
+	glVertex2i(10,10);
+	glVertex2i(90,10);
+	glEnd();
 
 
                             ///RIGHT OUTER BRIGE
@@ -460,6 +537,7 @@ void Draw()
 
 
     ///Right Tall Spike Tower
+    //base
     glColor3f(0.59, 0.59, 0.59);
     glBegin(GL_POLYGON);
     glVertex2i(710, 120);
@@ -467,6 +545,21 @@ void Draw()
     glVertex2i(770, 450);
     glVertex2i(740, 450);
     glEnd();
+
+        //windows
+        glColor3f(0.29, 0.29, 0.29);
+        rec(740,360,5,8);
+        rec(740+15,360-10,5,8);
+        rec(740+15+15,360-10-10,5,8);
+
+        rec(735,320,5,8);
+        rec(735+15,320-10,5,8);
+        rec(735+15+15,320-10-10,5,8);
+
+        rec(730,280,5,8);
+        rec(730+15,280-10,5,8);
+        rec(730+15+15,280-10-10,5,8);
+        rec(730+15+15+15,280-10-10-10,5,8);
 
     //Orange Top
     glColor3f(0.9, 0.44, 0.06);
@@ -485,10 +578,17 @@ void Draw()
     glVertex2i(735, 450); //lbhat
     glVertex2i(775, 450); //rbhat
     glVertex2i(770, 445);
-    glVertex2i(775, 420);
-    glVertex2i(735, 420);
+    glVertex2i(773, 420);
+    glVertex2i(737, 420);
     glEnd();
 
+    glColor3f(0.59, 0.59, 0.59);
+    glBegin(GL_POLYGON);
+    glVertex2i(740, 445); //lbhat
+    glVertex2i(735, 450); //lbhat
+    glVertex2i(775, 450); //rbhat
+    glVertex2i(770, 445); //rbhat
+    glEnd();
 
 
 
@@ -520,6 +620,14 @@ void Draw()
     glVertex2i(455, 325);
     glVertex2i(433, 275);
     glEnd();
+
+    glColor3f(0.37, 0.37, 0.37);
+    gapboxesX(395,250,5,9,425,2);
+    gapboxesX(395,230,5,9,425,2);
+    gapboxesX(395,210,5,9,425,2);
+    gapboxesX(395,193,5,9,425,2);
+
+    rec(450,260,10,20);
 
     //Orange roof
     glColor3f(0.9, 0.44, 0.06); // White wall
@@ -603,6 +711,8 @@ void Draw()
     glVertex2i(565, 310);
     glEnd();
 
+
+
     glColor3f(0.67, 0.67, 0.67);
     glBegin(GL_POLYGON);
     glVertex2i(555, 310);
@@ -611,12 +721,32 @@ void Draw()
     glVertex2i(555, 350);
     glEnd();
 
+        //lighter shade at center
+        /*
+        glColor3f(0.74, 0.74, 0.74);
+        glBegin(GL_POLYGON);
+        glVertex2i(575, 125);
+        glVertex2i(600, 125);
+        glVertex2i(600, 350);
+        glVertex2i(575, 350);
+        glEnd();
+        */
+        glColor3f(0.75, 0.75, 0.75);
+        gapboxesY(555,310,65,3,350,4);
+        gapboxesX(555,310,10,40,620,3);
+
     glColor3f(0.96, 0.6, 0.3);
     glBegin(GL_POLYGON);
     glVertex2i(625, 350);
     glVertex2i(550, 350);
     glVertex2i(587.5, 470);
     glEnd();
+
+    glColor3f(0.37, 0.37, 0.37);
+    rec(570, 250,5,8);
+    rec(570+10, 250-30,5,8);
+    rec(570+10+10, 250-30-30,5,8);
+    rec(570+10+10+10, 250-30-30-30,5,8);
 
     ///Left Big Tower 2(With flag on top)
 
@@ -1061,8 +1191,14 @@ glEnd();
 
     //BUSH LEFT
     glColor3f(0.45, 0.5, 0.4);
-    drawBush(250.0, 40.0, 80.0); //left single
-    drawBush(200.0, 20.0, 80.0); //left single
+    drawBush(250.0, 40.0, 80.0);
+    drawBush(200.0, 20.0, 80.0);
+
+    //BUSH MidGate
+    glColor3f(0.45, 0.5, 0.4);
+    drawBush(650.0, 30.0, 80.0);
+
+
     ///Outer Road
 
     glColor3f( 0.43, 0.43, 0.43);

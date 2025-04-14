@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1744662739 source:c:\users\likhan\desktop\palace project cg\main.cpp
+1744668441 source:c:\users\likhan\desktop\palace project cg\main.cpp
 	<windows.h>
 	<GL/glut.h>
 	<stdio.h>
